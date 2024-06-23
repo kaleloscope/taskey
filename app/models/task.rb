@@ -1,6 +1,9 @@
 class Task
   include Mongoid::Document
   include Mongoid::Timestamps
+  include CalendarsApi
+
+  CALENDAR_ID = 'primary'
   
   field :title, type: String
   field :description, type: String
@@ -11,14 +14,34 @@ class Task
 
   validates :title, :description, :deadline, :status, presence: true
   validates :status, inclusion: { in: %w[backlog in_progress done] }
+  validate :validate_deadline
 
-  def validate_event_dates
-    return if deadline.nil?
-    
-    if created_at > deadline
-      errors.add(:deadline, 'must be greater than created date')
-    end
+  after_create :create_task_in_calendar
+  after_update :update_task_in_calendar
+  before_destroy :remove_task_from_calendar
+
+
+  def create_task_in_calendar
+    self.create_google_task(self)
   end
+
+  def update_task_in_calendar
+    self.edit_google_task(self)
+  end
+
+  def remove_task_from_calendar
+    self.delete_google_task(self)
+  end
+
+  private
+
+    def validate_deadline
+      return if deadline.nil?
+      
+      if Time.now > self.deadline
+        errors.add(:deadline, 'must be greater than created date')
+      end
+    end
 
 end
 

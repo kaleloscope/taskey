@@ -312,8 +312,10 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   config.omniauth :google_oauth2, "314639970544-fr1l796fv1kcqevkspmpespacj3uqred.apps.googleusercontent.com", "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", {
-    scope: 'userinfo.email, userinfo.profile',
-    prompt: 'select_account',
+    scope: 'userinfo.email, userinfo.profile, calendar',
+    prompt: 'consent',
+    access_type: 'offline',
+    select_account: true,
     redirect_uri: 'http://localhost:8888/users/auth/google_oauth2/callback'
   }
 end
