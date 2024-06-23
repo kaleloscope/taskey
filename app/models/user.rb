@@ -24,7 +24,6 @@ class User
   # Fields related to the authentication
   field :access_token, type: String
   field :refresh_token, type: String
-  field :expires_at, type: DateTime
 
   def self.from_omniauth(access_token)
     data = access_token.info
@@ -46,7 +45,7 @@ class User
   end
 
   def expired?
-    expires_at < Time.now.to_i
+    Time.at(self.expires_at).to_datetime < Time.now
   end 
 
 

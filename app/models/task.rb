@@ -1,6 +1,7 @@
 class Task
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Attributes::Dynamic
   include CalendarsApi
 
   CALENDAR_ID = 'primary'
