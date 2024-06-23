@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Reminder for your task: <%= @task.title %></h1>
+    <p>Hi <%= @user.name %>,</p>
+    <p>This is a reminder for your task "<%= @task.description %>", which is due on <%= @task.deadline.strftime("%B %d, %Y at %I:%M %p") %>.</p>
+    <p>Thank you!</p>
+  </body>
+</html>

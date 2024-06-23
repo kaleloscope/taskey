@@ -33,19 +33,21 @@ module CalendarsApi
     client = get_google_calendar_client(task.user)
     g_task = get_task(task)
     ge = client.insert_event(Task::CALENDAR_ID, g_task)
-    task.update(google_task_id: ge.id)
+    task.set(google_task_id: ge.id)
   end
   
   def edit_google_task(task)
     client = get_google_calendar_client(task.user)
-    g_task = client.get_event(Task::CALENDAR_ID, task.google_task_id)
+    g_task = client.get_event(Task::CALENDAR_ID, task[:google_task_id])
     ge = get_task(task)
-    client.update_event(Task::CALENDAR_ID, task.google_task_id, ge)
+    client.update_event(Task::CALENDAR_ID, task[:google_task_id], ge)
   end
   
   def delete_google_task(task)
     client = get_google_calendar_client(task.user)
-    client.delete_event(Task::CALENDAR_ID, task.google_task_id)
+    client.delete_event(Task::CALENDAR_ID, task[:google_task_id])
+  rescue Google::Apis::ClientError => e
+    Rails.logger.error("Task has been deleted from the calendar")
   end
   
   def get_google_task(task_id, user)
