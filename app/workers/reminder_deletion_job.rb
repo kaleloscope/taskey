@@ -4,7 +4,6 @@ class ReminderDeletionJob
   include Sidekiq::Worker
 
   def perform(task_id)
-    binding.pry
     # Retrieve the task and delete associated reminder jobs
     task = Task.where(id: task_id).first
     jobs_to_delete = Sidekiq::ScheduledSet.new.select do |job|

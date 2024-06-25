@@ -5,7 +5,6 @@ class ReminderJob
   queue_as :default
 
   def perform(user_id, task_id)
-    binding.pry
     task = Task.where(id: task_id).first
     user = User.where(id: user_id).first
 

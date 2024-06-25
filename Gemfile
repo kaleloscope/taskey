@@ -20,6 +20,11 @@ gem 'sidekiq'
 gem 'redis'
 gem 'devise'
 
+gem 'sqlite3', '~> 1.4'
+
+gem 'mailjet'
+gem 'dotenv-rails', groups: [:development, :test]
+
 gem 'pry', '~> 0.14.1'
 gem 'pry-nav'
 gem 'omniauth'
