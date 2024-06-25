@@ -21,7 +21,7 @@ These instructions will help you set up and run the project on your local machin
 - Ruby 2.7.7
 - Rails 6.x
 - MongoDB v6.0.15
-- Redis (for Sidekiq)
+- Redis v6.2(for Sidekiq)
 - Bundler
 - Mailcatcher (for local email testing)
 - Google Cloud project with OAuth2 credentials
@@ -90,7 +90,7 @@ These instructions will help you set up and run the project on your local machin
 
 8. **Start the application:**
     ```sh
-    rails server
+    rails s -p 8888
     ```
 
 9. **Start Sidekiq:**
@@ -99,7 +99,7 @@ These instructions will help you set up and run the project on your local machin
     ```
 
 10. **Access the application:**
-    Open your browser and navigate to `http://localhost:3000`.
+    Open your browser and navigate to `http://localhost:8888`.
 
 ## Usage
 
@@ -108,7 +108,7 @@ These instructions will help you set up and run the project on your local machin
     - For now I have only kept Sign in with Google which uses OmniAuth2 for account authorization implemented in the App.
     - Please use the dummy test account that I have created for testing purposes of the application -
    ```
-    email_id: dummy_test@gmail.com
+    email_id: dummyusertest23@gmail.com
     password: password@234
     ```
 
@@ -136,10 +136,6 @@ We welcome contributions to Taskey! Please follow these steps to contribute:
 3. Commit your changes (`git commit -am 'Add some feature'`).
 4. Push to the branch (`git push origin feature/your-feature`).
 5. Create a new Pull Request.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
