@@ -19,7 +19,7 @@ These instructions will help you set up and run the project on your local machin
 ### Prerequisites
 
 - Ruby 2.7.7
-- Rails 6.x
+- Rails 6.0.6
 - MongoDB v6.0.15
 - Redis v6.2(for Sidekiq)
 - Bundler
@@ -85,7 +85,7 @@ These instructions will help you set up and run the project on your local machin
     ```ruby
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = { address: '127.0.0.1', port: 1025 }
-    config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+    config.action_mailer.default_url_options = { host: 'localhost', port: 8888 }
     ```
 
 8. **Start the application:**
